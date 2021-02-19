@@ -20,7 +20,7 @@ public class ModListToClipboard {
 
             // Build an array of mod names and mod id's
             for (ModInfo mod : mods) {
-                modStrings.add(String.format("'%s' (%s:%s)%s", mod.getDisplayName(), mod.getModId(), mod.getVersion(), System.lineSeparator()));
+                modStrings.add(String.format("'%s' (%s:%s)%s, ", mod.getDisplayName(), mod.getModId(), mod.getVersion(), System.lineSeparator()));
             }
 
             // Create one large string from the array
