@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        maven { url = "https://files.minecraftforge.net/maven" }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "3.+", changing: true
+    }
+}
+apply plugin: "java"
+apply plugin: "net.minecraftforge.gradle"
+
+version = mod_version
+group = package_group
+archivesBaseName = mod_id
+
+repositories {
+
+    minecraft {
+        // MCPBot is dead. Do not use that to check for updates.
+        // if you want the absolute latest mapping, run `gradlew -PUPDATE_MAPPINGS="20201028-1.16.3" updateMappings`
+        mappings channel: "snapshot", version: "${mapping}"
+
+        accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+
+        runs {
+            client {
+                workingDirectory project.file("run")
+
+                mods { twitchmod { source sourceSets.main } }
+            }
+
+            server {
+                workingDirectory project.file("run")
+
+                mods { twitchmod { source sourceSets.main } }
+            }
+        }
+    }
+
+
+    dependencies {
+        // Specify the version of Minecraft to use, If this is any group other then "net.minecraft" it is assumed
+        // that the dep is a ForgeGradle "patcher" dependency. And it"s patches will be applied.
+        // The userdev artifact is a special name and will get all sorts of transformations applied to it.
+        minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+
+
+    }
+
+
+// Example for how to get properties into the manifest for reading by the runtime..
+    jar {
+        manifest {
+            attributes([
+                    "Specification-Title"     : "${archivesBaseName}",
+                    "Specification-Vendor"    : "${author}",
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : "${version}",
+                    "Implementation-Vendor"   : "${author}",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            ])
+        }
+
+    }
+}

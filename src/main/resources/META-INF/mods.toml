@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+license = "GNU LGPLv3"
+issueTrackerURL = "http://github.com/iCrazyBlaze/"
+
+[[mods]]
+modId = "modlistpaste"
+version = "${file.jarVersion}"
+displayName = "Mod List Paster"
+displayURL = "https://icrazyblaze.github.io/"
+credits = "Idea from MMD"
+authors = "iCrazyBlaze"
+description = '''
+Copy a list of your currently installed mods to the clipboard.
+'''
+
+[[dependencies.modlistpaste]]
+modId = "forge"
+mandatory = true
+versionRange = "[26,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.modlistpaste]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.14,1.17)"
+side="CLIENT"

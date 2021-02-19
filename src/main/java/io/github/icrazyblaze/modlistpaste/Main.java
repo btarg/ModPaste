@@ -1,0 +1,33 @@
+package io.github.icrazyblaze.modlistpaste;
+
+import com.mojang.brigadier.CommandDispatcher;
+import io.github.icrazyblaze.modlistpaste.command.CopyCommand;
+import io.github.icrazyblaze.modlistpaste.util.Reference;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.Commands;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+/**
+ * @author iCrazyBlaze
+ */
+@Mod(Reference.MOD_ID)
+@OnlyIn(Dist.CLIENT)
+public final class Main {
+
+    public Main() {
+        MinecraftForge.EVENT_BUS.register(this.getClass());
+    }
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event) {
+
+        CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
+        dispatcher.register(Commands.literal("modlist")
+                .then(CopyCommand.register()));
+    }
+}
