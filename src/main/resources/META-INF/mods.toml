@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[26,)"
+loaderVersion = "[25,)"
 license = "GNU LGPLv3"
 issueTrackerURL = "http://github.com/iCrazyBlaze/"
 
@@ -7,22 +7,23 @@ issueTrackerURL = "http://github.com/iCrazyBlaze/"
 modId = "modlistpaste"
 version = "${file.jarVersion}"
 displayName = "Mod List Paster"
-displayURL = "https://icrazyblaze.github.io/"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/mod-list-paster"
+logoFile = "logo.png"
 credits = "Idea from MMD"
 authors = "iCrazyBlaze"
 description = '''
-Copy a list of your currently installed mods to the clipboard.
+Save a list of your currently installed mods to the clipboard or to a text file.
 '''
 
 [[dependencies.modlistpaste]]
 modId = "forge"
 mandatory = true
-versionRange = "[26,)"
+versionRange = "[25,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.modlistpaste]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.14,1.17)"
+versionRange="[1.13,1.17)"
 side="CLIENT"

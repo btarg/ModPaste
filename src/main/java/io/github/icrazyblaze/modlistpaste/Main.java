@@ -2,7 +2,7 @@ package io.github.icrazyblaze.modlistpaste;
 
 import com.mojang.brigadier.CommandDispatcher;
 import io.github.icrazyblaze.modlistpaste.command.CopyCommand;
-import io.github.icrazyblaze.modlistpaste.util.Reference;
+import io.github.icrazyblaze.modlistpaste.command.SaveCommand;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,9 +15,11 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * @author iCrazyBlaze
  */
-@Mod(Reference.MOD_ID)
+@Mod(Main.MOD_ID)
 @OnlyIn(Dist.CLIENT)
 public final class Main {
+
+    public static final String MOD_ID = "modlistpaste";
 
     public Main() {
         MinecraftForge.EVENT_BUS.register(this.getClass());
@@ -28,6 +30,7 @@ public final class Main {
 
         CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
         dispatcher.register(Commands.literal("modlist")
-                .then(CopyCommand.register()));
+                .then(CopyCommand.register())
+                .then(SaveCommand.register()));
     }
 }

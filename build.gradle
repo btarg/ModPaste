@@ -18,23 +18,19 @@ archivesBaseName = mod_id
 repositories {
 
     minecraft {
-        // MCPBot is dead. Do not use that to check for updates.
-        // if you want the absolute latest mapping, run `gradlew -PUPDATE_MAPPINGS="20201028-1.16.3" updateMappings`
         mappings channel: "snapshot", version: "${mapping}"
-
-        accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
 
         runs {
             client {
                 workingDirectory project.file("run")
 
-                mods { twitchmod { source sourceSets.main } }
+                mods { modlistpaste { source sourceSets.main } }
             }
 
             server {
                 workingDirectory project.file("run")
 
-                mods { twitchmod { source sourceSets.main } }
+                mods { modlistpaste { source sourceSets.main } }
             }
         }
     }
