@@ -10,7 +10,7 @@ displayName = "Mod List Paster"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/mod-list-paster"
 logoFile = "logo.png"
 credits = "Idea from MMD"
-authors = "iCrazyBlaze"
+authors = "RonaRage (iCrazyBlaze)"
 description = '''
 Save a list of your currently installed mods to the clipboard or to a text file.
 '''
@@ -25,5 +25,5 @@ side = "CLIENT"
 [[dependencies.modlistpaste]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.13,1.17)"
+versionRange="[1.13,1.18)"
 side="CLIENT"

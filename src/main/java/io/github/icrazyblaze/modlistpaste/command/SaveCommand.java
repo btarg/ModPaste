@@ -1,6 +1,7 @@
 package io.github.icrazyblaze.modlistpaste.command;
 
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.icrazyblaze.modlistpaste.ModListToFile;
@@ -20,17 +21,20 @@ public class SaveCommand implements Command<CommandSource> {
 
     public static ArgumentBuilder<CommandSource, ?> register() {
         return Commands.literal("save")
-                .requires(cs -> cs.hasPermissionLevel(0))
-                .executes(CMD);
+                .requires(cs -> cs.hasPermission(0))
+                .then(Commands.argument("alphabetical", BoolArgumentType.bool())
+                .executes(CMD));
     }
 
     @Override
     public int run(CommandContext<CommandSource> context) {
 
-        ModListToFile.saveModList();
+        boolean alphabetical = BoolArgumentType.getBool(context, "alphabetical");
 
-        ITextComponent itextcomponent = (new StringTextComponent(ModListToFile.textFile.getName())).mergeStyle(TextFormatting.UNDERLINE).modifyStyle((style) -> style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, ModListToFile.textFile.getAbsolutePath())));
-        context.getSource().sendFeedback(new StringTextComponent("Saved mod list as ").append(itextcomponent), false);
+        ModListToFile.saveModList(alphabetical);
+
+        ITextComponent itextcomponent = (new StringTextComponent(ModListToFile.textFile.getName())).withStyle(TextFormatting.UNDERLINE).withStyle((style) -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, ModListToFile.textFile.getAbsolutePath())));
+        context.getSource().sendSuccess(new StringTextComponent("Saved mod list as ").append(itextcomponent), false);
 
         return SINGLE_SUCCESS;
     }

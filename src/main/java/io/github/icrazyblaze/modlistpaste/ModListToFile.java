@@ -35,7 +35,7 @@ public class ModListToFile {
 
     }
 
-    public static void saveModList() {
+    public static void saveModList(boolean alphabetical) {
         try {
 
             textFile = getFile();
@@ -43,7 +43,7 @@ public class ModListToFile {
 
             textFile.createNewFile(); // Create file if it doesn't already exist
             FileWriter fr = new FileWriter(textFile, false);
-            fr.write(ModListHelper.getModList());
+            fr.write(ModListHelper.getModList(alphabetical));
 
             fr.close();
 

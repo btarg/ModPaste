@@ -1,6 +1,7 @@
 package io.github.icrazyblaze.modlistpaste.command;
 
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.icrazyblaze.modlistpaste.ModListToClipboard;
@@ -17,15 +18,18 @@ public class CopyCommand implements Command<CommandSource> {
 
     public static ArgumentBuilder<CommandSource, ?> register() {
         return Commands.literal("copy")
-                .requires(cs -> cs.hasPermissionLevel(0))
-                .executes(CMD);
+                .requires(cs -> cs.hasPermission(0))
+                .then(Commands.argument("alphabetical", BoolArgumentType.bool())
+                .executes(CMD));
     }
 
     @Override
     public int run(CommandContext<CommandSource> context) {
 
-        ModListToClipboard.copyModList();
-        context.getSource().sendFeedback(new StringTextComponent("Copied text to clipboard!"), false);
+        boolean alphabetical = BoolArgumentType.getBool(context, "alphabetical");
+
+        ModListToClipboard.copyModList(alphabetical);
+        context.getSource().sendSuccess(new StringTextComponent("Copied text to clipboard!"), false);
 
         return SINGLE_SUCCESS;
     }

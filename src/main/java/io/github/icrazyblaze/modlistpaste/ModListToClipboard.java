@@ -9,13 +9,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ModListToClipboard {
 
-    public static void copyModList() {
+    public static void copyModList(boolean alphabetical) {
         try {
-            String text = ModListHelper.getModList();
+            String text = ModListHelper.getModList(alphabetical);
 
             // Use KeyboardListener to easily set clipboard content
             KeyboardListener kb = new KeyboardListener(Minecraft.getInstance());
-            kb.setClipboardString(text);
+            kb.setClipboard(text);
 
         } catch (Exception e) {
             e.printStackTrace();

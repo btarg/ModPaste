@@ -3,11 +3,12 @@ package io.github.icrazyblaze.modlistpaste.util;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModListHelper {
-    public static String getModList() {
+    public static String getModList(boolean alphabetical) {
 
         List<ModInfo> mods = ModList.get().getMods();
         ArrayList<String> modStrings = new ArrayList<>();
@@ -16,6 +17,10 @@ public class ModListHelper {
         for (ModInfo mod : mods) {
             modStrings.add(String.format("'%s' (%s:%s), %s", mod.getDisplayName(), mod.getModId(), mod.getVersion(), System.lineSeparator()));
         }
+
+        // Sort if specified
+        if (alphabetical)
+            modStrings.sort(Collator.getInstance());
 
         // Create one large string from the array
         StringBuilder builder = new StringBuilder();

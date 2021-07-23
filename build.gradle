@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         maven { url = "https://files.minecraftforge.net/maven" }
-        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -11,14 +10,10 @@ buildscript {
 apply plugin: "java"
 apply plugin: "net.minecraftforge.gradle"
 
-version = mod_version
-group = package_group
-archivesBaseName = mod_id
-
 repositories {
 
     minecraft {
-        mappings channel: "snapshot", version: "${mapping}"
+        mappings channel: "official", version: "${mc_version}"
 
         runs {
             client {
@@ -35,26 +30,18 @@ repositories {
         }
     }
 
-
     dependencies {
-        // Specify the version of Minecraft to use, If this is any group other then "net.minecraft" it is assumed
-        // that the dep is a ForgeGradle "patcher" dependency. And it"s patches will be applied.
-        // The userdev artifact is a special name and will get all sorts of transformations applied to it.
         minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-
-
     }
 
-
-// Example for how to get properties into the manifest for reading by the runtime..
     jar {
         manifest {
             attributes([
-                    "Specification-Title"     : "${archivesBaseName}",
+                    "Specification-Title"     : "${mod_id}",
                     "Specification-Vendor"    : "${author}",
                     "Specification-Version"   : "1",
                     "Implementation-Title"    : project.name,
-                    "Implementation-Version"  : "${version}",
+                    "Implementation-Version"  : "${mod_version}",
                     "Implementation-Vendor"   : "${author}",
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
             ])
