@@ -5,31 +5,31 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.icrazyblaze.modlistpaste.ModListToClipboard;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class CopyCommand implements Command<CommandSource> {
+public class CopyCommand implements Command<CommandSourceStack> {
 
     private static final CopyCommand CMD = new CopyCommand();
 
-    public static ArgumentBuilder<CommandSource, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return Commands.literal("copy")
                 .requires(cs -> cs.hasPermission(0))
                 .then(Commands.argument("alphabetical", BoolArgumentType.bool())
-                .executes(CMD));
+                        .executes(CMD));
     }
 
     @Override
-    public int run(CommandContext<CommandSource> context) {
+    public int run(CommandContext<CommandSourceStack> context) {
 
         boolean alphabetical = BoolArgumentType.getBool(context, "alphabetical");
 
         ModListToClipboard.copyModList(alphabetical);
-        context.getSource().sendSuccess(new StringTextComponent("Copied text to clipboard!"), false);
+        context.getSource().sendSuccess(new TextComponent("Copied text to clipboard!"), false);
 
         return SINGLE_SUCCESS;
     }

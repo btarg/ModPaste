@@ -3,8 +3,8 @@ package io.github.icrazyblaze.modlistpaste;
 import com.mojang.brigadier.CommandDispatcher;
 import io.github.icrazyblaze.modlistpaste.command.CopyCommand;
 import io.github.icrazyblaze.modlistpaste.command.SaveCommand;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -28,7 +28,7 @@ public final class Main {
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
 
-        CommandDispatcher<CommandSource> dispatcher = event.getDispatcher();
+        CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
         dispatcher.register(Commands.literal("modlist")
                 .then(CopyCommand.register())
                 .then(SaveCommand.register()));
