@@ -1,10 +1,7 @@
 package io.github.icrazyblaze.modlistpaste;
 
 import io.github.icrazyblaze.modlistpaste.util.ModListHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.loading.FMLPaths;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@OnlyIn(Dist.CLIENT)
+
 public class ModListToFile {
 
     private static final DateFormat date = new SimpleDateFormat("dd-MM-yyyy_HH.mm.ss");

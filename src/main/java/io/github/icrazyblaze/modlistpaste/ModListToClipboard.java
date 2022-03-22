@@ -1,12 +1,9 @@
 package io.github.icrazyblaze.modlistpaste;
 
 import io.github.icrazyblaze.modlistpaste.util.ModListHelper;
-import net.minecraft.client.KeyboardListener;
+import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class ModListToClipboard {
 
     public static void copyModList(boolean alphabetical) {
@@ -14,7 +11,7 @@ public class ModListToClipboard {
             String text = ModListHelper.getModList(alphabetical);
 
             // Use KeyboardListener to easily set clipboard content
-            KeyboardListener kb = new KeyboardListener(Minecraft.getInstance());
+            KeyboardHandler kb = new KeyboardHandler(Minecraft.getInstance());
             kb.setClipboard(text);
 
         } catch (Exception e) {

@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[32,)"
+loaderVersion = "[40,)"
 license = "GNU LGPLv3"
 issueTrackerURL = "http://github.com/iCrazyBlaze/"
 
@@ -10,7 +10,7 @@ displayName = "Mod List Paster"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/mod-list-paster"
 logoFile = "logo.png"
 credits = "Idea from MMD"
-authors = "RonaRage (iCrazyBlaze)"
+authors = "RonaRage, AKA Btarg"
 description = '''
 Save a list of your currently installed mods to the clipboard or to a text file.
 '''
@@ -18,12 +18,12 @@ Save a list of your currently installed mods to the clipboard or to a text file.
 [[dependencies.modlistpaste]]
 modId = "forge"
 mandatory = true
-versionRange = "[32,)"
+versionRange = "[40,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.modlistpaste]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.16,1.17)"
+versionRange="[1.18,1.19)"
 side="CLIENT"
